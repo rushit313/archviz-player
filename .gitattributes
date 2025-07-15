@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 echo "*.mp4 filter=lfs diff=lfs merge=lfs -text" >> .gitattributes
 git add .gitattributes
 git commit -m "Fix .gitattributes for .mp4 LFS tracking"
 git push origin main
+=======
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+>>>>>>> 45c646a286e8b6bacbab064e3cee6c49956aaa7e

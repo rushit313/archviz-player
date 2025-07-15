@@ -1,0 +1,10 @@
+{
+  "buildCommand": "git lfs pull && npm run build",
+<<<<<<< HEAD:frontend/vercel.json
+  "outputDirectory": "build"
+=======
+  "outputDirectory": "build",
+  "framework": "create-react-app",
+  "ignoreCommand": "git diff --quiet HEAD^ HEAD"
+>>>>>>> 45c646a286e8b6bacbab064e3cee6c49956aaa7e:vercel.json
+}
