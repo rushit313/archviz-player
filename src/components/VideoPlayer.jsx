@@ -1,10 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import Sidebar from "./Sidebar";
-import FloorplanOverlay from "./FloorplanOverlay";
 
 export default function VideoPlayer() {
-  const [scene, setScene] = useState("overview");
-  const [overlay, setOverlay] = useState("overview");
+  const [src, setSrc] = useState("videos/lobby.mp4");
   const [isLoading, setIsLoading] = useState(true);
   const videoRef = useRef(null);
 
@@ -19,11 +16,10 @@ export default function VideoPlayer() {
         video.removeEventListener("canplay", handleCanPlay);
       };
     }
-  }, [scene]);
+  }, [src]);
 
-  const handleSidebarClick = (section) => {
-    setScene(section);
-    setOverlay(section);
+  const changeScene = (scene) => {
+    setSrc(`videos/${scene}.mp4`);
   };
 
   const handleProgressClick = (e) => {
@@ -37,35 +33,46 @@ export default function VideoPlayer() {
   };
 
   return (
-    <div className="w-full h-screen bg-black relative overflow-hidden">
-      {/* Loading overlay */}
+    <div className="w-full h-screen bg-black relative">
       {isLoading && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 text-white text-xl">
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black bg-opacity-80 text-white text-xl">
           Loading...
         </div>
       )}
-
-      {/* Sidebar navigation */}
-      <Sidebar onSelect={handleSidebarClick} />
-
-      {/* Floorplan Overlay */}
-      <FloorplanOverlay active={overlay} />
-
-      {/* Video background */}
       <video
+        id="video-player"
         ref={videoRef}
-        src={`videos/${scene}.mp4`}
+        src={src}
         autoPlay
+        controls={false}
         loop
         muted
-        playsInline
         className="w-full h-full object-cover"
+        playsInline
       />
-
-      {/* Custom progress bar */}
+      <div className="absolute top-6 left-6 z-20 flex space-x-4">
+        <button
+          onClick={() => changeScene("lobby")}
+          className="bg-white bg-opacity-20 text-white px-4 py-2 rounded hover:bg-opacity-40 transition"
+        >
+          Lobby
+        </button>
+        <button
+          onClick={() => changeScene("living")}
+          className="bg-white bg-opacity-20 text-white px-4 py-2 rounded hover:bg-opacity-40 transition"
+        >
+          Living Room
+        </button>
+        <button
+          onClick={() => changeScene("bedroom")}
+          className="bg-white bg-opacity-20 text-white px-4 py-2 rounded hover:bg-opacity-40 transition"
+        >
+          Bedroom
+        </button>
+      </div>
       <div
         onClick={handleProgressClick}
-        className="absolute bottom-6 left-0 right-0 h-2 bg-gray-800 cursor-pointer z-40"
+        className="absolute bottom-10 left-0 right-0 h-2 bg-gray-700 cursor-pointer z-20"
       >
         <div
           className="h-full bg-red-500"
