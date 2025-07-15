@@ -1,9 +1,4 @@
 {
-<<<<<<< HEAD
-  "dependencies": {
-    "framer-motion": "^12.23.5"
-  }
-=======
   "name": "archviz-video-player",
   "version": "1.0.0",
   "private": true,
@@ -16,6 +11,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "framer-motion": "^12.23.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1"
@@ -42,5 +38,4 @@
   "author": "",
   "license": "ISC",
   "description": ""
->>>>>>> 45c646a286e8b6bacbab064e3cee6c49956aaa7e
 }
